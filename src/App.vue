@@ -18,17 +18,26 @@ export default {
       titulo: "alura pic",
       subtitulo: "Sub Titulo",
       fotos: [
-        {
-          url: "https://blog.emania.com.br/wp-content/uploads/2019/01/como-tirar-foto-de-cachorro.jpg",
-          titulo: "cachorro",
-        },
-        {
-          url: "https://blog.emania.com.br/wp-content/uploads/2019/01/como-tirar-foto-de-cachorro.jpg",
-          titulo: "cachorro2",
-        },
       ],
     };
   },
+  created(){
+    this.fotos = this.$http.get('http://localhost:3000/v1/fotos')
+    .then(res => res.json())
+    .then(fotos => this.fotos = fotos, err => console.log(err));
+
+    //opção com declaração de variavel
+    // let promisse = this.fotos = this.$http.get('http://localhost:3000/v1/fotos');
+    // promisse
+    // .then(res => res.json())
+    // .then(fotos => this.fotos = fotos);
+
+    //opcao feia
+    // promisse.then(res => {
+    //   res.json().then(fotos => this.fotos = fotos);
+    // });
+    
+  }
 };
 </script>
 
