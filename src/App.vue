@@ -6,7 +6,6 @@
  <img :src="foto.url" v-bind:alt="foto.titulo">
 </div>
 </template>
-
 <script>
 export default {
  data() {
