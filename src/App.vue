@@ -10,17 +10,20 @@
         </meu-painel>
       </li>
     </ul>
-
+    
+  <rodape> texto fixo rodapé!</rodape>
   </div>
 </template>
 
 <script>
 import Painel from './components/shared/painel/Painel.vue';
+import Rodape from './components/shared/rodape/Rodape.vue';
 
 export default {
 
     components: {
-      'meu-painel' : Painel
+      'meu-painel' : Painel,
+      'rodape' : Rodape
     },
 
   data() {
