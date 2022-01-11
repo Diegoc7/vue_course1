@@ -7,7 +7,8 @@
       <li class="lista-fotos-item" v-for="foto of fotosComFiltros">
         <meu-painel :titulo="foto.titulo">
             <imagem-responsiva :src="foto.url" :titulo="foto.titulo"></imagem-responsiva>
-            <meu-botao tipo="button" rotulo="remover" @click.native="remove(foto)" />
+            <meu-botao tipo="button" rotulo="remover" @botaoAtivado="remove(foto)" />
+            <!-- <meu-botao tipo="button" rotulo="remover" @botaoAtivado="remove($event, foto)" /> -->
         </meu-painel>
       </li>
     </ul>
@@ -38,11 +39,10 @@ export default {
   },
   methods: {
 
+    // remove($event, foto){
     remove(foto){
-      if(confirm('Confirma operação')){
-
+      // alert($event);   
         alert('quer remover:'+foto.titulo);
-      }
     }
   },
   computed: {
