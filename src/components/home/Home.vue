@@ -5,8 +5,8 @@
     <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="Filtro por título" >
     <ul class="lista-fotos">
       <li class="lista-fotos-item" v-for="foto of fotosComFiltros">
-        <meu-painel :titulo="foto.titulo">
-            <imagem-responsiva :src="foto.url" :titulo="foto.titulo"></imagem-responsiva>
+        <meu-painel :titulo="foto.titulo" >
+            <imagem-responsiva v-meu-transform="{incremento: 15, animate: true}" :src="foto.url" :titulo="foto.titulo"></imagem-responsiva>
             <meu-botao tipo="button" rotulo="remover" @botaoAtivado="remove(foto)" :confirmacao="true" estilo="perigo" />
         </meu-painel>
       </li>
