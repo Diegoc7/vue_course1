@@ -1,37 +1,64 @@
 <template>
-    <button @click="disparaAcao()" class="botao botao-perigo" :type="tipo">{{ rotulo }}</button>
+  <button @click="disparaAcao()" class="botao" :class="estiloDoBotao" :type="tipo">
+    {{ rotulo }}
+  </button>
 </template>
 
 <script>
 export default {
-    props: ['tipo', 'rotulo'],
-    methods: {
-        disparaAcao(){
-            if(confirm("confirma operacao")){
-                this.$emit('botaoAtivado');
-                // this.$emit('botaoAtivado', new Date());
-            }
+//   props: ["tipo", "rotulo", "confirmacao", "estilo"],
+  props: {
+      tipo: {
+          required: true,
+          type: String,
+      },
+      rotulo: {
+          required: true,
+          type: String
+      },
+      confirmacao: {
+          required: false,
+          type: Boolean,
+      },
+      estilo: String
+      
+  },
+  methods: {
+    disparaAcao() {
+      if (this.confirmacao) {
+        if (confirm("confirma operacao")) {
+          this.$emit("botaoAtivado");
         }
-    }
+          return;
+      }
+      this.$emit("botaoAtivado");
+    },
+  },
+  computed: {
+      estiloDoBotao(){
+          if(this.estilo == 'padrao' || !this.estilo) return 'botao-padrao';
+          if(this.estilo == 'perigo') return 'botao-perigo';
+  }
 }
+};
 </script>
 
 <style  scoped>
 .botao {
-        display: inline-block;
-        padding: 10px;
-        border-radius: 3px;
-        margin: 10px;
-        font-size: 1.2em;
-    }
+  display: inline-block;
+  padding: 10px;
+  border-radius: 3px;
+  margin: 10px;
+  font-size: 1.2em;
+}
 
-    .botao-perigo {
-        background: firebrick;
-        color: white;
-    }
+.botao-perigo {
+  background: firebrick;
+  color: white;
+}
 
-    .botao-padrao {
-        background: darkcyan;
-        color: white;
-    }
+.botao-padrao {
+  background: darkcyan;
+  color: white;
+}
 </style>
